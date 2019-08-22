@@ -1,4 +1,4 @@
-package edu.escuelaing.arem.designPrimer;
+package co.edu.escuelaing.arem.designPrimer;
 
 /**
  * Hello world!
