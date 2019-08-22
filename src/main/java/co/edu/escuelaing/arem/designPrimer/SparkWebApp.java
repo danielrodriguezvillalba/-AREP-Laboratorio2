@@ -14,7 +14,7 @@ import static spark.Spark.*;
         }
         
         static int getPort() {
-            if (System.getenv("PORT") != null) {
+            if (System.getenv() != null) {
                 return Integer.parseInt(System.getenv("PORT"));
             }
             return 4567;
