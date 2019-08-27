@@ -1,4 +1,4 @@
-package co.edu.escuelaing.arem.designPrimer;
+package edu.escuelaing.arem.ASE;
 
 /**
  * Hello world!
@@ -38,7 +38,7 @@ import static spark.Spark.*;
                 + "<body>"
                 + "<h2>Media y derivada </h2>"
                 + "<form action=\"/results\">"
-                + "  * Ingrese los datos de la lista, separados por comas : <br>"
+                + "  * Ingrese los datos de la lista, separados por espacios : <br>"
                 + "  <input type=\"text\" name='lista'>"
                 + "  <br>"
                 + "  <br><br>"
@@ -54,9 +54,11 @@ import static spark.Spark.*;
     private static String resultsPage(Request req, Response res) {
         float a;
         float b;
-        leer(req.queryParams("lista"));
         String htm;
-        
+        String[] values=req.queryParams("lista").split(" ");
+        for(String i: values){
+            app.agregarElemento(Double.parseDouble(i));
+        }
             try {
                 htm = "<!DOCTYPE html>"
                         + "<html>"
@@ -71,18 +73,5 @@ import static spark.Spark.*;
                 return null;
             }    
     }
-    
-    public static void  leer(String file){
-        try{
-            BufferedReader bf = new BufferedReader(new FileReader(file));
-            String bfRead;
-            while ((bfRead=bf.readLine()) != null){
-                app.agregarElemento(Double.parseDouble(bfRead));
-            }
-        } catch (Exception e){
-            System.err.println("No se encontro el archivo ");
-        }
-    }
-    
     
 }
