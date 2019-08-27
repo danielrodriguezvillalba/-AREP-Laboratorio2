@@ -15,8 +15,8 @@ import static spark.Spark.*;
     
      public class SparkWebApp {
 
-         
-        private Aplicacion app = new Aplicacion(); ;
+        private static double media, desvEst; 
+        private static Aplicacion app = new Aplicacion();
         
         public static void main(String[] args) {
             port(getPort());
@@ -49,11 +49,14 @@ import static spark.Spark.*;
                 + "</html>";
         return pageContent;
     }
+        
+    
     private static String resultsPage(Request req, Response res) {
         float a;
         float b;
         leer(req.queryParams("lista"));
         String htm;
+        
             try {
                 htm = "<!DOCTYPE html>"
                         + "<html>"
@@ -69,7 +72,7 @@ import static spark.Spark.*;
             }    
     }
     
-    public void static leer(String file){
+    public static void  leer(String file){
         try{
             BufferedReader bf = new BufferedReader(new FileReader(file));
             String bfRead;
